@@ -67,3 +67,19 @@ source ~/.config/nvim/plugins/coc.rc.vim
 [[plugins]]
 repo = 'rust-lang/rust.vim'
 
+[[plugins]]
+repo = 'mattn/vim-lsp-settings'
+
+[[plugins]]
+repo = 'prettier/vim-prettier'
+build = 'npm install'
+
+[[plugins]]
+repo = 'HerringtonDarkholme/yats.vim'
+
+[[plugins]]
+repo = 'ctrlpvim/ctrlp.vim'
+
+[[plugins]]
+repo = 'frazrepo/vim-rainbow'
+

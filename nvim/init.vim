@@ -18,10 +18,10 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/Users/mysk/.cache/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=/home/mysk/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
-call dein#begin('/Users/mysk/.cache/dein')
+call dein#begin('/home/mysk/.cache/dein')
 
 " Add or remove your plugins here like this:
 "call dein#add('Shougo/neosnippet.vim')
@@ -75,4 +75,7 @@ endfunction
 
 " Rust
 let g:rustfmt_autosave = 1
+
+" Rainbow
+let g:rainbow_active = 1
 
