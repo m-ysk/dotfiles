@@ -68,6 +68,9 @@ source ~/.config/nvim/plugins/coc.rc.vim
 repo = 'rust-lang/rust.vim'
 
 [[plugins]]
+repo = 'prabirshrestha/vim-lsp'
+
+[[plugins]]
 repo = 'mattn/vim-lsp-settings'
 
 [[plugins]]
@@ -75,11 +78,23 @@ repo = 'prettier/vim-prettier'
 build = 'npm install'
 
 [[plugins]]
-repo = 'HerringtonDarkholme/yats.vim'
-
-[[plugins]]
 repo = 'ctrlpvim/ctrlp.vim'
 
 [[plugins]]
 repo = 'frazrepo/vim-rainbow'
+
+[[plugins]]
+repo = 'pangloss/vim-javascript'
+
+[[plugins]]
+repo = 'leafgarland/typescript-vim'
+
+[[plugins]]
+repo = 'peitalin/vim-jsx-typescript'
+
+[[plugins]]
+repo = 'styled-components/vim-styled-components'
+
+[[plugins]]
+repo = 'jparise/vim-graphql'
 

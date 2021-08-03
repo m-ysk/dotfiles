@@ -5,9 +5,34 @@ set nocompatible
 
 set ruler
 set number
+set cursorline
 
 set background=dark
 set termguicolors
+
+set autoread
+
+set smartindent
+
+nnoremap j gj
+nnoremap k gk
+
+" Tab
+set tabstop = 4
+set shiftwidth = 4
+
+" Search
+set incsearch
+set wrapscan
+set hlsearch
+
+" Brackets
+inoremap { {}<LEFT>
+inoremap ( ()<LEFT>
+inoremap < <><LEFT>
+inoremap " ""<LEFT>
+inoremap ' ''<LEFT>
+inoremap [ []<LEFT>
 
 let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
@@ -75,6 +100,23 @@ endfunction
 
 " Rust
 let g:rustfmt_autosave = 1
+
+" Typescript
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+
+let g:coc_global_extensions = [
+  \ 'coc-tsserver',
+  \ 'coc-json'
+  \ ]
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
 
 " Rainbow
 let g:rainbow_active = 1
