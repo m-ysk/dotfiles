@@ -3,12 +3,24 @@
 
 export EDITOR=nvim
 
-alias ls='ls --color=auto'
+alias ls='ls -a --color=auto'
+alias ll='ls -l'
+
+alias mv='mv -i'
+
+alias mkdir='mkdir -p'
 
 alias pbcopy='xsel --clipboard --input'
 alias pbpaste='xsel --clipboard --output'
 
 alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
+alias gl='git log'
+alias glo='git log --oneline'
+alias gsu='git submodule update'
+
+alias v='nvim'
 
 # powerline
 powerline-daemon -q
