@@ -84,17 +84,30 @@ repo = 'ctrlpvim/ctrlp.vim'
 repo = 'frazrepo/vim-rainbow'
 
 [[plugins]]
-repo = 'pangloss/vim-javascript'
+repo = 'HerringtonDarkholme/yats.vim'
 
 [[plugins]]
-repo = 'leafgarland/typescript-vim'
+repo = 'maxmellon/vim-jsx-pretty'
 
-[[plugins]]
-repo = 'peitalin/vim-jsx-typescript'
+#[[plugins]]
+#repo = 'pangloss/vim-javascript'
+
+#[[plugins]]
+#repo = 'leafgarland/typescript-vim'
+
+#[[plugins]]
+#repo = 'peitalin/vim-jsx-typescript'
 
 [[plugins]]
 repo = 'styled-components/vim-styled-components'
 
 [[plugins]]
 repo = 'jparise/vim-graphql'
+
+[[plugins]]
+repo = 'jacoborus/tender.vim'
+hook_add = '''
+  set background=dark
+  autocmd VimEnter * ++nested colorscheme tender
+'''
 

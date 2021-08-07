@@ -1,6 +1,15 @@
 set encoding=utf-8
 scriptencoding utf-8
 
+set hidden
+
+set nobackup
+set nowritebackup
+
+set updatetime=50
+
+set shortmess+=c
+
 set nocompatible
 
 set ruler
@@ -18,8 +27,8 @@ nnoremap j gj
 nnoremap k gk
 
 " Tab
-set tabstop = 4
-set shiftwidth = 4
+set tabstop=4
+set shiftwidth=4
 
 " Search
 set incsearch
@@ -75,15 +84,15 @@ endif
 
 "End dein Scripts-------------------------
 
-colorscheme onedark
-let g:lightline = {'colorscheme': 'onedark'}
+" colorscheme onedark
+" let g:lightline = {'colorscheme': 'onedark'}
 
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeShowHidden = 1
 
-set updatetime=100
-
 " coc
+set signcolumn=number
+
 nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
@@ -97,6 +106,10 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Rust
 let g:rustfmt_autosave = 1
