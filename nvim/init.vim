@@ -75,6 +75,9 @@ endif
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeShowHidden = 1
 
+map <C-k> :Files<CR>
+map <C-l> :Rg<CR>
+
 " coc
 set signcolumn=number
 
