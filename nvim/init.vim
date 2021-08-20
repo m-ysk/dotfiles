@@ -35,14 +35,6 @@ set incsearch
 set wrapscan
 set hlsearch
 
-" Brackets
-inoremap { {}<LEFT>
-inoremap ( ()<LEFT>
-inoremap < <><LEFT>
-inoremap " ""<LEFT>
-inoremap ' ''<LEFT>
-inoremap [ []<LEFT>
-
 let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
 
@@ -56,10 +48,6 @@ set runtimepath+=/home/mysk/.cache/dein/repos/github.com/Shougo/dein.vim
 
 " Required:
 call dein#begin('/home/mysk/.cache/dein')
-
-" Add or remove your plugins here like this:
-"call dein#add('Shougo/neosnippet.vim')
-"call dein#add('Shougo/neosnippet-snippets')
 
 " For using toml file
 let s:toml_dir = $HOME . '/.config/nvim/dein'
@@ -83,9 +71,6 @@ if dein#check_install()
 endif
 
 "End dein Scripts-------------------------
-
-" colorscheme onedark
-" let g:lightline = {'colorscheme': 'onedark'}
 
 map <C-n> :NERDTreeToggle<CR>
 let NERDTreeShowHidden = 1
