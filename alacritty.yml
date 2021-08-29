@@ -1,0 +1,12 @@
+font:
+  normal:
+    family: "Myrica M"
+    style: Regular
+  bold:
+    family: "Myrica M"
+    style: Bold
+  italic:
+    family: "Myrica M"
+    style: Italic
+  size: 11
+
