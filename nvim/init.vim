@@ -35,6 +35,15 @@ set incsearch
 set wrapscan
 set hlsearch
 
+let mapleader = "\<Space>"
+nnoremap <Leader>w :w<CR>
+vmap <Leader>y "+y
+vmap <Leader>d "+d
+nmap <Leader>p "+p
+nmap <Leader>P "+P
+vmap <Leader>p "+p
+vmap <Leader>P "+P
+
 let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
 
@@ -122,3 +131,6 @@ endif
 " Rainbow
 let g:rainbow_active = 1
 
+" vim-expand-region
+vmap v <Plug>(expand_region_expand)
+vmap <C-v> <Plug>(expand_region_shrink)

@@ -3,6 +3,9 @@
 repo = 'Shougo/dein.vim'
 
 [[plugins]]
+repo = 'vim-airline/vim-airline'
+
+[[plugins]]
 repo = 'leico/autodate.vim'
 
 [[plugins]]
@@ -110,4 +113,16 @@ hook_add = '''
   set background=dark
   autocmd VimEnter * ++nested colorscheme tender
 '''
+
+[[plugins]]
+repo = 'nelstrom/vim-visual-star-search'
+
+[[plugins]]
+repo = 'terryma/vim-expand-region'
+
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+[[plugins]]
+repo = 'tpope/vim-repeat'
 
