@@ -35,14 +35,28 @@ set incsearch
 set wrapscan
 set hlsearch
 
+inoremap <silent> jj <ESC>
+
 let mapleader = "\<Space>"
+
 nnoremap <Leader>w :w<CR>
+nnoremap <Leader>v :vs<CR>
+
+nnoremap <Leader>h <C-w>h
+nnoremap <Leader>j <C-w>j
+nnoremap <Leader>k <C-w>k
+nnoremap <Leader>l <C-w>l
+
 vmap <Leader>y "+y
-vmap <Leader>d "+d
 nmap <Leader>p "+p
 nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
+
+nnoremap <Leader>bp :bprevious<CR>
+nnoremap <Leader>bn :bnext<CR>
+nnoremap <Leader>bf :bfirst<CR>
+nnoremap <Leader>bl :blast<CR>
 
 let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'
@@ -81,19 +95,22 @@ endif
 
 "End dein Scripts-------------------------
 
-map <C-n> :NERDTreeToggle<CR>
+"map <C-n> :NERDTreeToggle<CR>
+map <Leader>e :NERDTreeToggle<CR>
 let NERDTreeShowHidden = 1
 
-map <C-k> :Files<CR>
-map <C-l> :Rg<CR>
+"map <C-k> :Files<CR>
+map <Leader>f :Files<CR>
+"map <C-l> :Rg<CR>
+map <Leader>g :Rg<CR>
 
 " coc
 set signcolumn=number
 
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+nmap <silent> <Leader>d <Plug>(coc-definition)
+nmap <silent> <Leader>y <Plug>(coc-type-definition)
+nmap <silent> <Leader>i <Plug>(coc-implementation)
+nmap <silent> <Leader>r <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
