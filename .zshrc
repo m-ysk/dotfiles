@@ -16,15 +16,14 @@ alias pbpaste='xsel --clipboard --output'
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
+alias gsw='git switch'
+alias gf='git fetch'
 alias gl='git log'
 alias glo='git log --oneline'
+alias gd='git diff'
 alias gsu='git submodule update'
 
 alias v='nvim'
-
-# powerline
-powerline-daemon -q
-. /usr/share/powerline/bindings/zsh/powerline.zsh
 
 # fasd
 alias a='fasd -a'
@@ -36,6 +35,23 @@ alias sf='fasd -sif'
 alias z='fasd_cd -d'
 alias zz='fasd_cd -d -i'
 eval "$(fasd --init posix-alias zsh-hook)"
+
+alias docker-rm-all='docker ps -aq | xargs docker rm'
+alias docker-rmi-all='docker images -aq | xargs docker rmi'
+
+alias cc='cargo check'
+alias ct='cargo test'
+
+alias uberproto='docker run -it --rm -v "$(pwd)":/work uber/prototool:latest prototool all'
+
+# starship
+export STARSHIP_CONFIG=~/dotfiles/starship.toml
+eval "$(starship init zsh)"
+
+# powerline
+# powerline-daemon -q
+# . /usr/share/powerline/bindings/zsh/powerline.zsh
+
 
 eval "$(pyenv init -)"
 
