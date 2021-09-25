@@ -48,11 +48,6 @@ alias uberproto='docker run -it --rm -v "$(pwd)":/work uber/prototool:latest pro
 export STARSHIP_CONFIG=~/dotfiles/starship.toml
 eval "$(starship init zsh)"
 
-# powerline
-# powerline-daemon -q
-# . /usr/share/powerline/bindings/zsh/powerline.zsh
-
-
 eval "$(pyenv init -)"
 
 export XDG_CONFIG_HOME=$HOME/.config
