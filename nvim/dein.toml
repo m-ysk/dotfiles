@@ -92,15 +92,6 @@ repo = 'HerringtonDarkholme/yats.vim'
 [[plugins]]
 repo = 'maxmellon/vim-jsx-pretty'
 
-#[[plugins]]
-#repo = 'pangloss/vim-javascript'
-
-#[[plugins]]
-#repo = 'leafgarland/typescript-vim'
-
-#[[plugins]]
-#repo = 'peitalin/vim-jsx-typescript'
-
 [[plugins]]
 repo = 'styled-components/vim-styled-components'
 
