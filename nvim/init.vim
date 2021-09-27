@@ -104,7 +104,16 @@ let NERDTreeShowHidden = 1
 "map <C-k> :Files<CR>
 map <Leader>f :Files<CR>
 "map <C-l> :Rg<CR>
-map <Leader>g :Rg<CR>
+map <Leader>gg :Rg<CR>
+
+" fugitive
+nnoremap <Leader>gs :Git<CR>
+nnoremap <Leader>gc :Gcommit-v<CR>
+nnoremap <Leader>ga :Gwrite<CR>
+nnoremap <Leader>gr :Gread<CR>
+nnoremap <Leader>gl :Glog<CR>
+nnoremap <Leader>gb :Git blame<CR>
+nnoremap <Leader>gd :Gdiff<CR>
 
 " coc
 set signcolumn=number
