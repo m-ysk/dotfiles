@@ -42,8 +42,12 @@ alias z='fasd_cd -d'
 alias zz='fasd_cd -d -i'
 eval "$(fasd --init posix-alias zsh-hook)"
 
+alias dk='docker'
 alias docker-rm-all='docker ps -aq | xargs docker rm'
 alias docker-rmi-all='docker images -aq | xargs docker rmi'
+alias dc='docker-compose'
+
+alias k='kubectl'
 
 alias cc='cargo check'
 alias ct='cargo test'
