@@ -40,7 +40,9 @@ inoremap <silent> jj <ESC>
 let mapleader = "\<Space>"
 
 nnoremap <Leader>w :w<CR>
+nnoremap <Leader>q :q<CR>
 nnoremap <Leader>v :vs<CR>
+nnoremap <Leader>o :only<CR>
 
 nnoremap <Leader>h <C-w>h
 nnoremap <Leader>j <C-w>j
