@@ -55,10 +55,10 @@ nmap <Leader>P "+P
 vmap <Leader>p "+p
 vmap <Leader>P "+P
 
-nnoremap <Leader>bp :bprevious<CR>
-nnoremap <Leader>bn :bnext<CR>
-nnoremap <Leader>bf :bfirst<CR>
-nnoremap <Leader>bl :blast<CR>
+"nnoremap <Leader>bp :bprevious<CR>
+"nnoremap <Leader>bn :bnext<CR>
+"nnoremap <Leader>bf :bfirst<CR>
+"nnoremap <Leader>bl :blast<CR>
 
 let g:python_host_prog = $HOME . '/.pyenv/versions/neovim2/bin/python'
 let g:python3_host_prog = $HOME . '/.pyenv/versions/neovim3/bin/python'

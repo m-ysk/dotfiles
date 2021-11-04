@@ -120,3 +120,6 @@ repo = 'tpope/vim-repeat'
 [[plugins]]
 repo = 'nelstrom/vim-qargs'
 
+[[plugins]]
+repo = 'jeetsukumaran/vim-buffergator'
+
