@@ -54,6 +54,8 @@ alias ct='cargo test'
 
 alias uberproto='docker run -it --rm -v "$(pwd)":/work uber/prototool:latest prototool all'
 
+alias rust-musl-builder='docker run --rm -it -v "$(pwd)":/home/rust/src ekidd/rust-musl-builder'
+
 # starship
 export STARSHIP_CONFIG=~/dotfiles/starship.toml
 eval "$(starship init zsh)"
