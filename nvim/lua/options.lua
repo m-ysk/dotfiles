@@ -1,5 +1,9 @@
 vim.o.encoding = "utf-8"
 
+vim.cmd('syntax on')
+
+vim.o.laststatus = 2
+
 vim.o.hidden = true
 
 vim.o.updatetime = 50
