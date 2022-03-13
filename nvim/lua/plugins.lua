@@ -13,6 +13,11 @@ require('packer').startup(function()
 	use 'morhetz/gruvbox'
 	vim.cmd[[autocmd VimEnter * ++nested colorscheme gruvbox]]
 
+	use {
+		'nvim-treesitter/nvim-treesitter',
+		run = ':TSUpdate'
+	}
+
 	use 'neovim/nvim-lspconfig'
 	use 'williamboman/nvim-lsp-installer'
 
@@ -72,6 +77,16 @@ require('packer').startup(function()
 end)
 
 vim.cmd([[autocmd BufWritePost init.lua source <afile> | PackerCompile]])
+
+require('nvim-treesitter.configs').setup {
+	highlight = {
+		enable = true,
+	},
+	indent = {
+		enable = true,
+	},
+	ensure_installed = 'maintained',
+}
 
 local lsp_installer = require('nvim-lsp-installer')
 lsp_installer.on_server_ready(function(server)
