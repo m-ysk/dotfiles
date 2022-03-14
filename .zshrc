@@ -89,8 +89,15 @@ zle -N peco-history-selection
 stty -ixon
 
 bindkey -v
-bindkey '^R' history-incremental-search-backward
 bindkey '^P' peco-history-selection
+
+# fzf
+function select-history() {
+	BUFFER=$(history -n -r 1 | fzf --no-sort +m --query "$LBUFFER" --prompt="History > ")
+	CURSOR=$#BUFFER
+}
+zle -N select-history
+bindkey '^r' select-history
 
 export VOLTA_HOME="$HOME/.volta"
 export PATH="$VOLTA_HOME/bin:$PATH"
