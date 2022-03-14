@@ -71,6 +71,20 @@ require('packer').startup(function()
 		\   fzf#vim#with_preview({'options': '--exact --reverse'}, 'right:50%:wrap'))
 	]])
 
+	use {
+		'phaazon/hop.nvim',
+		branch = 'v1',
+	}
+	require'hop'.setup()
+	vim.api.nvim_set_keymap('n', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, case_insensitive = false })<CR>", {})
+	vim.api.nvim_set_keymap('n', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, case_insensitive = false })<CR>", {})
+	vim.api.nvim_set_keymap('o', 'f', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, inclusive_jump = true, case_insensitive = false })<CR>", {})
+	vim.api.nvim_set_keymap('o', 'F', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, inclusive_jump = true, case_insensitive = false })<CR>", {})
+	vim.api.nvim_set_keymap('', 't', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.AFTER_CURSOR, current_line_only = true, case_insensitive = false })<CR>", {})
+	vim.api.nvim_set_keymap('', 'T', "<cmd>lua require'hop'.hint_char1({ direction = require'hop.hint'.HintDirection.BEFORE_CURSOR, current_line_only = true, case_insensitive = false })<CR>", {})
+	vim.api.nvim_set_keymap('n', 's', "<cmd>lua require'hop'.hint_char1()<CR>", {})
+	vim.api.nvim_set_keymap('n', '<Leader>s', "<cmd>lua require'hop'.hint_lines_skip_whitespace()<CR>", {})
+
 	if packer_bootstrap then
 		require('packer').sync()
 	end
