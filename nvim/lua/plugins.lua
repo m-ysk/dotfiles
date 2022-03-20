@@ -44,6 +44,8 @@ require('packer').startup(function()
 	use 'tpope/vim-repeat'
 	use 'tpope/vim-surround'
 
+	use 'windwp/nvim-autopairs'
+
 	use 'ntpeters/vim-better-whitespace'
 	use 'frazrepo/vim-rainbow'
 	vim.g.rainbow_active = 1
@@ -198,3 +200,5 @@ cmp.setup({
 			{name = 'buffer' },
 		})
 })
+
+require('nvim-autopairs').setup{}
