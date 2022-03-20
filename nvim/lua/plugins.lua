@@ -136,6 +136,15 @@ local lsp_installer = require('nvim-lsp-installer')
 lsp_installer.on_server_ready(function(server)
 	local opts = {}
 	opts.on_attach = function(client, bufnr)
+		if server.name == 'tsserver' then
+			client.resolved_capabilities.document_formatting = false
+			client.resolved_capabilities.document_range_formatting = false
+
+			local ts_utils = require('nvim-lsp-ts-utils')
+			ts_utils.setup({})
+			ts_utils.setup_client(client)
+		end
+
 		local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
 		local opt = { noremap = true, silent = true }
@@ -150,6 +159,21 @@ lsp_installer.on_server_ready(function(server)
 
 	server:setup(opts)
 end)
+
+local null_ls = require('null-ls')
+null_ls.setup({
+	sources = {
+		null_ls.builtins.diagnostics.eslint.with({
+			only_local = 'node_modules/.bin',
+		}),
+		null_ls.builtins.formatting.prettier.with({
+			only_local = 'node_modules/.bin',
+		})
+	},
+	on_attach = function(client, bufnr)
+		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+	end
+})
 
 vim.opt.completeopt = 'menu,menuone,noselect'
 
@@ -173,40 +197,4 @@ cmp.setup({
 		}, {
 			{name = 'buffer' },
 		})
-})
-
-local buf_map = function(bufnr, mode, lhs, rhs, opts)
-	api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts or {
-		silent = true,
-	})
-end
-
-local on_attach = function(client, bufnr)
-	vim.cmd("command! LspFormatting lua vim.lsp.buf.formatting()")
-end
-
-require('lspconfig').tsserver.setup({
-	on_attach = function(client, bufnr)
-		client.resolved_capabilities.document_formatting = false
-		client.resolved_capabilities.document_range_formatting = false
-
-		local ts_utils = require('nvim-lsp-ts-utils')
-		ts_utils.setup({})
-		ts_utils.setup_client(client)
-
-		on_attach(client, bufnr)
-	end,
-})
-
-local null_ls = require('null-ls')
-null_ls.setup({
-	sources = {
-		null_ls.builtins.diagnostics.eslint.with({
-			only_local = 'node_modules/.bin',
-		}),
-		null_ls.builtins.formatting.prettier.with({
-			only_local = 'node_modules/.bin',
-		})
-	},
-	on_attach = on_attach
 })
