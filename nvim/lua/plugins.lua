@@ -137,6 +137,11 @@ require('nvim-treesitter.configs').setup {
 local lsp_installer = require('nvim-lsp-installer')
 lsp_installer.on_server_ready(function(server)
 	local opts = {}
+
+	if server.name == 'tsserver' then
+		opts.init_options = require('nvim-lsp-ts-utils').init_options
+	end
+
 	opts.on_attach = function(client, bufnr)
 		if server.name == 'tsserver' then
 			client.resolved_capabilities.document_formatting = false
