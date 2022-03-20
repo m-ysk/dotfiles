@@ -19,6 +19,7 @@ require('packer').startup(function()
 	}
 
 	use 'neovim/nvim-lspconfig'
+	use 'folke/lua-dev.nvim'
 	use 'williamboman/nvim-lsp-installer'
 
 	use 'hrsh7th/nvim-cmp'
@@ -35,9 +36,9 @@ require('packer').startup(function()
 
 	--use 'simrat39/rust-tools.nvim'
 
-	use 'HerringtonDarkholme/yats.vim'
-	use 'maxmellon/vim-jsx-pretty'
-	use 'styled-components/vim-styled-components'
+	--use 'HerringtonDarkholme/yats.vim'
+	--use 'maxmellon/vim-jsx-pretty'
+	--use 'styled-components/vim-styled-components'
 	use 'jose-elias-alvarez/nvim-lsp-ts-utils'
 
 	use 'tpope/vim-repeat'
@@ -174,10 +175,26 @@ cmp.setup({
 		})
 })
 
+local buf_map = function(bufnr, mode, lhs, rhs, opts)
+	api.nvim_buf_set_keymap(bufnr, mode, lhs, rhs, opts or {
+		silent = true,
+	})
+end
+
+local on_attach = function(client, bufnr)
+	vim.cmd("command! LspFormatting lua vim.lsp.buf.formatting()")
+end
+
 require('lspconfig').tsserver.setup({
-	on_attach = function(client)
+	on_attach = function(client, bufnr)
 		client.resolved_capabilities.document_formatting = false
 		client.resolved_capabilities.document_range_formatting = false
+
+		local ts_utils = require('nvim-lsp-ts-utils')
+		ts_utils.setup({})
+		ts_utils.setup_client(client)
+
+		on_attach(client, bufnr)
 	end,
 })
 
@@ -191,4 +208,5 @@ null_ls.setup({
 			only_local = 'node_modules/.bin',
 		})
 	},
+	on_attach = on_attach
 })
