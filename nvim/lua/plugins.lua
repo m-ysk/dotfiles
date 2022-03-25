@@ -24,7 +24,7 @@ require('packer').startup(function()
 
 	use 'hrsh7th/nvim-cmp'
 	use 'hrsh7th/cmp-nvim-lsp'
-	use 'hrsh7th/cmp-vsnip'
+	use 'hrsh7thk/cmp-vsnip'
 	use 'hrsh7th/cmp-buffer'
 
 	use {'jose-elias-alvarez/null-ls.nvim', requires = {'nvim-lua/plenary.nvim'}}
@@ -42,7 +42,8 @@ require('packer').startup(function()
 	use 'jose-elias-alvarez/nvim-lsp-ts-utils'
 
 	use 'tpope/vim-repeat'
-	use 'tpope/vim-surround'
+	-- use 'tpope/vim-surround'
+	use 'machakann/vim-sandwich'
 
 	use 'windwp/nvim-autopairs'
 
@@ -62,7 +63,7 @@ require('packer').startup(function()
 	use 'lambdalisue/fern.vim'
 	api.nvim_set_keymap('', '<Leader>e', ':Fern . -reveal=% -drawer -toggle -width=40<CR>', opts)
 
-	use 'xuyuanp/nerdtree-git-plugin'
+	--use 'xuyuanp/nerdtree-git-plugin'
 	use 'airblade/vim-gitgutter'
 	use 'tpope/vim-fugitive'
 	--api.nvim_set_keymap('n', '<Leader>gs', ':Git<CR>', opts)
@@ -90,16 +91,19 @@ require('packer').startup(function()
 	}
 	api.nvim_set_keymap('n', '<Leader>ff', "<cmd>lua require('telescope.builtin').find_files()<CR>", opts)
 	api.nvim_set_keymap('n', '<Leader>fg', "<cmd>lua require('telescope.builtin').git_files()<CR>", opts)
+	api.nvim_set_keymap('n', '<Leader>fo', "<cmd>lua require('telescope.builtin').oldfiles()<CR>", opts)
 	api.nvim_set_keymap('n', '<Leader>gg', "<cmd>lua require('telescope.builtin').live_grep()<CR>", opts)
 	api.nvim_set_keymap('n', '<Leader>fb', "<cmd>lua require('telescope.builtin').buffers()<CR>", opts)
+	api.nvim_set_keymap('n', '<Leader>fc', "<cmd>lua require('telescope.builtin').command_history()<CR>", opts)
+	api.nvim_set_keymap('n', '<Leader>fs', "<cmd>lua require('telescope.builtin').search_history()<CR>", opts)
 	api.nvim_set_keymap('n', '<Leader>fh', "<cmd>lua require('telescope.builtin').help_tags()<CR>", opts)
 	api.nvim_set_keymap('n', '<Leader>d', "<cmd>lua require('telescope.builtin').lsp_definitions()<CR>", opts)
-	api.nvim_set_keymap('n', '<Leader>t', "<cmd>lua require('telescope.builtin').lsp_type_definitions()<CR>", opts)
-	api.nvim_set_keymap('n', '<Leader>r', "<cmd>lua require('telescope.builtin').lsp_references()<CR>", opts)
-	api.nvim_set_keymap('n', '<Leader>i', "<cmd>lua require('telescope.builtin').lsp_implementations()<CR>", opts)
+	api.nvim_set_keymap('n', 'gd', "<cmd>lua require('telescope.builtin').lsp_type_definitions()<CR>", opts)
+	api.nvim_set_keymap('n', 'gr', "<cmd>lua require('telescope.builtin').lsp_references()<CR>", opts)
+	api.nvim_set_keymap('n', 'gi', "<cmd>lua require('telescope.builtin').lsp_implementations()<CR>", opts)
 	api.nvim_set_keymap('n', '<Leader>fsb', "<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>", opts)
 	api.nvim_set_keymap('n', '<Leader>fsa', "<cmd>lua require('telescope.builtin').lsp_workspace_symbols()<CR>", opts)
-	api.nvim_set_keymap('n', '<Leader>fc', "<cmd>lua require('telescope.builtin').lsp_code_actions()<CR>", opts)
+	api.nvim_set_keymap('n', '<Leader>ca', "<cmd>lua require('telescope.builtin').lsp_code_actions()<CR>", opts)
 	api.nvim_set_keymap('n', '<Leader>fd', "<cmd>lua require('telescope.builtin').diagnostics()<CR>", opts)
 	api.nvim_set_keymap('n', '<Leader>ft', "<cmd>lua require('telescope.builtin').treesitter()<CR>", opts)
 	api.nvim_set_keymap('n', '<Leader>gla', "<cmd>lua require('telescope.builtin').git_commits()<CR>", opts)
@@ -112,8 +116,8 @@ require('packer').startup(function()
 		branch = 'v1',
 	}
 	require'hop'.setup()
-	api.nvim_set_keymap('n', 'f', "<cmd>lua require'hop'.hint_char1({ case_insensitive = true })<CR>", opts)
-	api.nvim_set_keymap('o', 'f', "<cmd>lua require'hop'.hint_char1({ case_insensitive = true, inclusive_jump = true })<CR>", opts)
+	api.nvim_set_keymap('n', 'f', "<cmd>lua require'hop'.hint_char2({ case_insensitive = true })<CR>", opts)
+	api.nvim_set_keymap('o', 'f', "<cmd>lua require'hop'.hint_char2({ case_insensitive = true, inclusive_jump = true })<CR>", opts)
 	api.nvim_set_keymap('n', '<Leader>s', "<cmd>lua require'hop'.hint_words()<CR>", opts)
 	api.nvim_set_keymap('n', '<Leader>a', "<cmd>lua require'hop'.hint_lines_skip_whitespace()<CR>", opts)
 
@@ -158,7 +162,9 @@ lsp_installer.on_server_ready(function(server)
 		--buf_set_keymap('n', '<Leader>d', '<cmd>lua vim.lsp.buf.definition()<CR>', opt)
 		--buf_set_keymap('n', '<Leader>i', '<cmd>lua vim.lsp.buf.implementation()<CR>', opt)
 		--buf_set_keymap('n', '<Leader>r', '<cmd>lua vim.lsp.buf.references()<CR>', opt)
-		buf_set_keymap('n', '<Leader><C-k>', '<cmd>lua vim.lsp.buf.hover()<CR>', opt)
+		buf_set_keymap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opt)
+		buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opt)
+		buf_set_keymap('n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opt)
 		buf_set_keymap('n', '<Leader>fm', '<cmd>lua vim.lsp.buf.formatting_sync()<CR>', opt)
 	end
 

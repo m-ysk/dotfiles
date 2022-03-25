@@ -1,6 +1,7 @@
 vim.o.encoding = "utf-8"
 
 vim.cmd('syntax on')
+vim.cmd('filetype plugin indent on')
 
 vim.o.laststatus = 2
 
