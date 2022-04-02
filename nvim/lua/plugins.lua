@@ -34,7 +34,7 @@ require('packer').startup(function()
 	use 'rust-lang/rust.vim'
 	vim.g.rustfmt_autosave = 1
 
-	--use 'simrat39/rust-tools.nvim'
+	use 'simrat39/rust-tools.nvim'
 
 	--use 'HerringtonDarkholme/yats.vim'
 	--use 'maxmellon/vim-jsx-pretty'
@@ -44,6 +44,8 @@ require('packer').startup(function()
 	use 'tpope/vim-repeat'
 	-- use 'tpope/vim-surround'
 	use 'machakann/vim-sandwich'
+
+	use 'terryma/vim-expand-region'
 
 	use 'windwp/nvim-autopairs'
 
@@ -147,15 +149,6 @@ lsp_installer.on_server_ready(function(server)
 	end
 
 	opts.on_attach = function(client, bufnr)
-		if server.name == 'tsserver' then
-			client.resolved_capabilities.document_formatting = false
-			client.resolved_capabilities.document_range_formatting = false
-
-			local ts_utils = require('nvim-lsp-ts-utils')
-			ts_utils.setup({})
-			ts_utils.setup_client(client)
-		end
-
 		local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
 		local opt = { noremap = true, silent = true }
@@ -166,6 +159,25 @@ lsp_installer.on_server_ready(function(server)
 		buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opt)
 		buf_set_keymap('n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opt)
 		buf_set_keymap('n', '<Leader>fm', '<cmd>lua vim.lsp.buf.formatting_sync()<CR>', opt)
+
+		if server.name == 'tsserver' then
+			client.resolved_capabilities.document_formatting = false
+			client.resolved_capabilities.document_range_formatting = false
+
+			local ts_utils = require('nvim-lsp-ts-utils')
+			ts_utils.setup({})
+			ts_utils.setup_client(client)
+		end
+
+		if server.name == 'rust_analyzer' then
+			buf_set_keymap('n', '<LocalLeader>e', "<cmd>lua require'rust-tools.expand_macro'.expand_macro()<CR>", opt)
+			buf_set_keymap('n', '<LocalLeader>o', "<cmd>lua require'rust-tools.open_cargo_toml'.open_cargo_toml()<CR>", opt)
+			buf_set_keymap('n', '<LocalLeader>u', "<cmd>lua require'rust-tools.move_item'.move_item(true)<CR>", opt)
+			buf_set_keymap('n', '<LocalLeader>d', "<cmd>lua require'rust-tools.move_item'.move_item(false)<CR>", opt)
+			buf_set_keymap('n', '<LocalLeader>p', "<cmd>lua require'rust-tools.parent_module'.parent_module()<CR>", opt)
+			buf_set_keymap('n', '<LocalLeader>j', "<cmd>lua require'rust-tools.join_lines'.join_lines()<CR>", opt)
+		end
+
 	end
 
 	opts.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())

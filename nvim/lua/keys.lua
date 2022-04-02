@@ -1,6 +1,7 @@
 local api = vim.api
 
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 
 local opt = { noremap = true, silent = false }
 
