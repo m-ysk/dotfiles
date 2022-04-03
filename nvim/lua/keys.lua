@@ -26,6 +26,13 @@ api.nvim_set_keymap('n', '<Leader>P', '"+P', opt)
 api.nvim_set_keymap('v', '<Leader>p', '"+p', opt)
 api.nvim_set_keymap('v', '<Leader>P', '"+P', opt)
 
+api.nvim_set_keymap('n', '<Leader>co', ':copen<CR>', opt)
+api.nvim_set_keymap('n', '<Leader>cn', ':cnext<CR>', opt)
+api.nvim_set_keymap('n', '<Leader>cp', ':cprevious<CR>', opt)
+
+api.nvim_set_keymap('n', '<Leader>bn', ':bnext<CR>', opt)
+api.nvim_set_keymap('n', '<Leader>bp', ':bprevious<CR>', opt)
+
 api.nvim_set_keymap('n', '<Leader><C-d>', '<cmd> lua vim.diagnostic.open_float()<CR>', opt)
 api.nvim_set_keymap('n', '<Leader>n', '<cmd> lua vim.diagnostic.goto_next()<CR>', opt)
 api.nvim_set_keymap('n', '<Leader>N', '<cmd> lua vim.diagnostic.goto_prev()<CR>', opt)
