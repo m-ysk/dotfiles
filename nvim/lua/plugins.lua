@@ -176,14 +176,27 @@ lsp_installer.on_server_ready(function(server)
 			buf_set_keymap('n', '<LocalLeader>d', "<cmd>lua require'rust-tools.move_item'.move_item(false)<CR>", opt)
 			buf_set_keymap('n', '<LocalLeader>p', "<cmd>lua require'rust-tools.parent_module'.parent_module()<CR>", opt)
 			buf_set_keymap('n', '<LocalLeader>j', "<cmd>lua require'rust-tools.join_lines'.join_lines()<CR>", opt)
+			buf_set_keymap('n', '<LocalLeader>mc', "<cmd>make check<CR>", opt)
+			buf_set_keymap('n', '<LocalLeader>mt', "<cmd>make test<CR", opt)
 		end
-
 	end
 
 	opts.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 	server:setup(opts)
 end)
+
+require'lspconfig'.ccls.setup{
+	init_options = {
+		compilationDatabaseDirectory = "build";
+		index = {
+			threads = 0;
+		};
+		clang = {
+			excludeArgs = { "-frounding-math" };
+		}
+	}
+}
 
 local null_ls = require('null-ls')
 null_ls.setup({
