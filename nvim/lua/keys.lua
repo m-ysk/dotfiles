@@ -6,6 +6,13 @@ vim.g.maplocalleader = ","
 local opt = { noremap = true, silent = false }
 
 api.nvim_set_keymap('i', 'jj', '<Esc>', opt)
+api.nvim_set_keymap('i', '<C-b>', '<C-o>h', opt)
+api.nvim_set_keymap('i', '<C-f>', '<C-o>l', opt)
+api.nvim_set_keymap('i', '<C-a>', '<C-o>^', opt)
+api.nvim_set_keymap('i', '<C-e>', '<C-o>$', opt)
+api.nvim_set_keymap('i', '<C-k>', '<C-o>d$', opt)
+api.nvim_set_keymap('i', '<C-t>', '<Esc>hxpa', opt)
+api.nvim_set_keymap('i', '<C-d>', '<Esc>lxi', opt)
 
 api.nvim_set_keymap('n', 'j', 'gj', opt)
 api.nvim_set_keymap('n', 'k', 'gk', opt)
