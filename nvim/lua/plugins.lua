@@ -24,7 +24,6 @@ require('packer').startup(function()
 
 	use 'hrsh7th/nvim-cmp'
 	use 'hrsh7th/cmp-nvim-lsp'
-	use 'hrsh7thk/cmp-vsnip'
 	use 'hrsh7th/cmp-buffer'
 
 	use {'jose-elias-alvarez/null-ls.nvim', requires = {'nvim-lua/plenary.nvim'}}
@@ -112,6 +111,7 @@ require('packer').startup(function()
 	api.nvim_set_keymap('n', '<Leader>glb', "<cmd>lua require('telescope.builtin').git_bcommits()<CR>", opts)
 	api.nvim_set_keymap('n', '<Leader>gbr', "<cmd>lua require('telescope.builtin').git_branches()<CR>", opts)
 	api.nvim_set_keymap('n', '<Leader>gs', "<cmd>lua require('telescope.builtin').git_status()<CR>", opts)
+	api.nvim_set_keymap('n', '<Leader>k', "<cmd>lua require('telescope.builtin').keymaps()<CR>", opts)
 
 	use {
 		'phaazon/hop.nvim',
@@ -122,6 +122,12 @@ require('packer').startup(function()
 	api.nvim_set_keymap('o', 'f', "<cmd>lua require'hop'.hint_char2({ case_insensitive = true, inclusive_jump = true })<CR>", opts)
 	api.nvim_set_keymap('n', '<Leader>s', "<cmd>lua require'hop'.hint_words()<CR>", opts)
 	api.nvim_set_keymap('n', '<Leader>a', "<cmd>lua require'hop'.hint_lines_skip_whitespace()<CR>", opts)
+
+	use 'icatalina/vim-case-change'
+
+	--use 'skanehira/preview-markdown.vim'
+	--use 'godlygeek/tabular'
+	--use 'preservim/vim-markdown'
 
 	if packer_bootstrap then
 		require('packer').sync()
@@ -137,7 +143,6 @@ require('nvim-treesitter.configs').setup {
 	indent = {
 		enable = true,
 	},
-	ensure_installed = 'maintained',
 }
 
 local lsp_installer = require('nvim-lsp-installer')
@@ -214,11 +219,6 @@ vim.opt.completeopt = 'menu,menuone,noselect'
 
 local cmp = require'cmp'
 cmp.setup({
-	snippet = {
-		expand = function(args)
-			vim.fn['vsnip#anonymous'](args.body)
-		end,
-	},
 	mapping = {
 		['<C-d>'] = cmp.mapping.scroll_docs(-4),
 		['<C-f>'] = cmp.mapping.scroll_docs(4),
@@ -228,7 +228,6 @@ cmp.setup({
 	},
 	sources = cmp.config.sources({
 			{ name = 'nvim_lsp' },
-			{ name = 'vsnip' },
 		}, {
 			{name = 'buffer' },
 		})

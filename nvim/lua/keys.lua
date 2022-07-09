@@ -10,6 +10,8 @@ api.nvim_set_keymap('i', 'jj', '<Esc>', opt)
 api.nvim_set_keymap('n', 'j', 'gj', opt)
 api.nvim_set_keymap('n', 'k', 'gk', opt)
 
+api.nvim_set_keymap('n', 'go', '<C-i>', opt)
+
 api.nvim_set_keymap('n', '<Leader>w', ':w<CR>', opt)
 api.nvim_set_keymap('n', '<Leader>q', ':q<CR>', opt)
 api.nvim_set_keymap('n', '<Leader>v', ':vs<CR>', opt)
