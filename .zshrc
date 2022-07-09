@@ -88,7 +88,8 @@ zle -N peco-history-selection
 
 stty -ixon
 
-bindkey -v
+bindkey -e
+bindkey \^U backward-kill-line
 bindkey '^P' peco-history-selection
 
 # fzf
