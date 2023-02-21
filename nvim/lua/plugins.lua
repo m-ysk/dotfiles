@@ -196,11 +196,12 @@ lsp_installer.on_server_ready(function(server)
 			buf_set_keymap('n', '<LocalLeader>m', "<cmd>make<CR>", opt)
 			buf_set_keymap('n', '<LocalLeader>r', "<cmd>make run<CR>", opt)
 
-			vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
+			vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format()")
 		end
+
 	end
 
-	opts.capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+	opts.capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 	opts.settings = {
 		["rust-analzyer"] = {
@@ -234,7 +235,7 @@ null_ls.setup({
 	end
 })
 
-require'lspconfig'.clangd.setup {}
+--require'lspconfig'.clangd.setup {}
 
 vim.opt.completeopt = 'menu,menuone,noselect'
 
