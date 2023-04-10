@@ -27,13 +27,16 @@ require('packer').startup(function()
 
 	use 'neovim/nvim-lspconfig'
 	use 'folke/lua-dev.nvim'
-	use 'williamboman/nvim-lsp-installer'
+	--use 'williamboman/nvim-lsp-installer'
+	use 'williamboman/mason.nvim'
+	use 'williamboman/mason-lspconfig.nvim'
 
 	use 'hrsh7th/nvim-cmp'
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'hrsh7th/cmp-buffer'
 
 	use {'jose-elias-alvarez/null-ls.nvim', requires = {'nvim-lua/plenary.nvim'}}
+	use 'jayp0521/mason-null-ls.nvim'
 
 	use 'sheerun/vim-polyglot'
 
@@ -152,11 +155,44 @@ require('nvim-treesitter.configs').setup {
 	},
 }
 
-local lsp_installer = require('nvim-lsp-installer')
-lsp_installer.on_server_ready(function(server)
+--local lsp_installer = require('nvim-lsp-installer')
+local mason = require('mason')
+mason.setup()
+
+local mason_null_ls = require('mason-null-ls')
+mason_null_ls.setup({
+	ensure_installed = { 'prettier' },
+	automatic_installation = true,
+})
+
+local null_ls = require('null-ls')
+null_ls.setup({
+	sources = {
+		null_ls.builtins.diagnostics.eslint.with({
+			only_local = 'node_modules/.bin',
+		}),
+		null_ls.builtins.formatting.prettier.with({
+			only_local = 'node_modules/.bin',
+		})
+	},
+	on_attach = function(client, bufnr)
+		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ name = 'null-ls' })")
+	end
+})
+
+local nvim_lsp = require('lspconfig')
+local mason_lspconfig = require('mason-lspconfig')
+mason_lspconfig.setup({
+	ensure_installed = {
+		'tsserver',
+		'eslint',
+	},
+	automatic_installation = true,
+})
+mason_lspconfig.setup_handlers({function(server_name)
 	local opts = {}
 
-	if server.name == 'tsserver' then
+	if server_name == 'tsserver' then
 		opts.init_options = require('nvim-lsp-ts-utils').init_options
 	end
 
@@ -172,16 +208,16 @@ lsp_installer.on_server_ready(function(server)
 		buf_set_keymap('n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opt)
 		buf_set_keymap('n', '<Leader>fm', '<cmd>lua vim.lsp.buf.formatting_sync()<CR>', opt)
 
-		if server.name == 'tsserver' then
-			client.resolved_capabilities.document_formatting = false
-			client.resolved_capabilities.document_range_formatting = false
+		if server_name == 'tsserver' then
+			client.server_capabilities.document_formatting = false
+			client.server_capabilities.document_range_formatting = false
 
 			local ts_utils = require('nvim-lsp-ts-utils')
 			ts_utils.setup({})
 			ts_utils.setup_client(client)
 		end
 
-		if server.name == 'rust_analyzer' then
+		if server_name == 'rust_analyzer' then
 			buf_set_keymap('n', '<LocalLeader>e', "<cmd>lua require'rust-tools.expand_macro'.expand_macro()<CR>", opt)
 			buf_set_keymap('n', '<LocalLeader>o', "<cmd>lua require'rust-tools.open_cargo_toml'.open_cargo_toml()<CR>", opt)
 			buf_set_keymap('n', '<LocalLeader>u', "<cmd>lua require'rust-tools.move_item'.move_item(true)<CR>", opt)
@@ -192,7 +228,7 @@ lsp_installer.on_server_ready(function(server)
 			buf_set_keymap('n', '<LocalLeader>t', "<cmd>make test<CR>", opt)
 		end
 
-		if server.name == 'clangd' then
+		if server_name == 'clangd' then
 			buf_set_keymap('n', '<LocalLeader>m', "<cmd>make<CR>", opt)
 			buf_set_keymap('n', '<LocalLeader>r', "<cmd>make run<CR>", opt)
 
@@ -217,23 +253,8 @@ lsp_installer.on_server_ready(function(server)
 		}
 	}
 
-	server:setup(opts)
-end)
-
-local null_ls = require('null-ls')
-null_ls.setup({
-	sources = {
-		null_ls.builtins.diagnostics.eslint.with({
-			only_local = 'node_modules/.bin',
-		}),
-		null_ls.builtins.formatting.prettier.with({
-			only_local = 'node_modules/.bin',
-		})
-	},
-	on_attach = function(client, bufnr)
-		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()")
-	end
-})
+	nvim_lsp[server_name].setup(opts)
+end })
 
 --require'lspconfig'.clangd.setup {}
 
