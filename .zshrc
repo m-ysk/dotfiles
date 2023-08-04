@@ -3,8 +3,8 @@
 
 export EDITOR=nvim
 
-alias ls='ls -a --color=auto'
-alias ll='ls -l'
+#alias ls='ls -a --color=auto'
+#alias ll='ls -l'
 
 alias mv='mv -i'
 
