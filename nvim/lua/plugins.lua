@@ -40,6 +40,9 @@ require('packer').startup(function()
 
 	use 'sheerun/vim-polyglot'
 
+	--use 'godlygeek/tabular'
+	--use 'preservim/vim-markdown'
+
 	use 'rust-lang/rust.vim'
 	vim.g.rustfmt_autosave = 1
 
@@ -136,8 +139,6 @@ require('packer').startup(function()
 	use 'icatalina/vim-case-change'
 
 	--use 'skanehira/preview-markdown.vim'
-	--use 'godlygeek/tabular'
-	--use 'preservim/vim-markdown'
 
 	if packer_bootstrap then
 		require('packer').sync()
