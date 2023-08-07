@@ -105,3 +105,8 @@ export PATH="$VOLTA_HOME/bin:$PATH"
 
 # Rust
 export RUSTC_WRAPPER=$(which sccache)
+
+# completion
+fpath=(~/.zsh/completion $fpath)
+autoload -U compinit
+compinit -u
