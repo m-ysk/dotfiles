@@ -38,6 +38,10 @@ require('packer').startup(function()
 	use {'jose-elias-alvarez/null-ls.nvim', requires = {'nvim-lua/plenary.nvim'}}
 	use 'jayp0521/mason-null-ls.nvim'
 
+	use 'sbdchd/neoformat'
+	vim.g.neoformat_try_node_exe = 1
+	vim.cmd([[autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.htm,*.html,*.css Neoformat ]])
+
 	use 'sheerun/vim-polyglot'
 
 	--use 'godlygeek/tabular'
