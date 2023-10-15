@@ -35,9 +35,6 @@ require('packer').startup(function()
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'hrsh7th/cmp-buffer'
 
-	use {'jose-elias-alvarez/null-ls.nvim', requires = {'nvim-lua/plenary.nvim'}}
-	use 'jayp0521/mason-null-ls.nvim'
-
 	use 'sbdchd/neoformat'
 	vim.g.neoformat_try_node_exe = 1
 	vim.cmd([[autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.htm,*.html,*.css Neoformat ]])
@@ -163,27 +160,6 @@ require('nvim-treesitter.configs').setup {
 --local lsp_installer = require('nvim-lsp-installer')
 local mason = require('mason')
 mason.setup()
-
-local mason_null_ls = require('mason-null-ls')
-mason_null_ls.setup({
-	ensure_installed = { 'prettier' },
-	automatic_installation = true,
-})
-
-local null_ls = require('null-ls')
-null_ls.setup({
-	sources = {
-		null_ls.builtins.diagnostics.eslint.with({
-			only_local = 'node_modules/.bin',
-		}),
-		null_ls.builtins.formatting.prettier.with({
-			only_local = 'node_modules/.bin',
-		})
-	},
-	on_attach = function(client, bufnr)
-		vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format({ name = 'null-ls' })")
-	end
-})
 
 local nvim_lsp = require('lspconfig')
 local mason_lspconfig = require('mason-lspconfig')
