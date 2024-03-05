@@ -2,6 +2,7 @@ local wezterm = require "wezterm";
 
 return {
 	font = wezterm.font("Myrica M"),
+	font_size = 14,
 
 	skip_close_confirmation_for_processes_named = {""},
 
