@@ -56,6 +56,8 @@ alias uberproto='docker run -it --rm -v "$(pwd)":/work uber/prototool:latest pro
 
 alias rust-musl-builder='docker run --rm -it -v "$(pwd)":/home/rust/src ekidd/rust-musl-builder'
 
+alias p='python3'
+
 # starship
 export STARSHIP_CONFIG=~/dotfiles/starship.toml
 eval "$(starship init zsh)"
@@ -90,7 +92,7 @@ stty -ixon
 
 bindkey -e
 bindkey \^U backward-kill-line
-bindkey '^P' peco-history-selection
+#bindkey '^P' peco-history-selection
 
 # fzf
 function select-history() {
