@@ -29,6 +29,10 @@ alias glo='git log --oneline'
 alias gd='git diff'
 alias gsu='git submodule update --init --recursive'
 
+alias ud='pushd'
+alias pd='popd'
+alias ds='dirs -v'
+
 alias v='nvim'
 
 # fasd
