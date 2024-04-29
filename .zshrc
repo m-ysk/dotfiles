@@ -29,7 +29,7 @@ alias glo='git log --oneline'
 alias gd='git diff'
 alias gsu='git submodule update --init --recursive'
 
-alias ud='pushd'
+alias md='pushd'
 alias pd='popd'
 alias ds='dirs -v'
 
