@@ -30,7 +30,7 @@ alias gd='git diff'
 alias gsu='git submodule update --init --recursive'
 
 alias md='pushd'
-alias pd='popd'
+alias bd='popd'
 alias ds='dirs -v'
 
 alias v='nvim'
