@@ -52,6 +52,7 @@ alias docker-rmi-all='docker images -aq | xargs docker rmi'
 alias dc='docker-compose'
 
 alias k='kubectl'
+alias krb='kubectl run busybox --image=busybox:1.28 --rm -it --restart=Never'
 
 alias cc='cargo check'
 alias ct='cargo test'
