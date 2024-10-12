@@ -1,3 +1,6 @@
+autoload -Uz compinit
+compinit
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -51,8 +54,11 @@ alias docker-rm-all='docker ps -aq | xargs docker rm'
 alias docker-rmi-all='docker images -aq | xargs docker rmi'
 alias dc='docker-compose'
 
+source <(kubectl completion zsh)
+
 alias k='kubectl'
 alias kg='kubectl get'
+alias kgn='kubectl get ns'
 alias kgp='kubectl get po'
 alias kgpn='kubectl get po -n'
 alias kgd='kubectl get deploy'
