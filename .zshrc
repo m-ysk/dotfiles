@@ -68,6 +68,7 @@ alias kgs='kubectl get svc'
 alias kd='kubectl describe'
 alias kl='kubectl logs'
 alias krb='kubectl run busybox --image=busybox:1.28 --rm -it --restart=Never'
+alias stern='kubectl stern'
 
 alias cc='cargo check'
 alias ct='cargo test'
