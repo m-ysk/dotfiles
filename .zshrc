@@ -50,9 +50,10 @@ alias zz='fasd_cd -d -i'
 eval "$(fasd --init posix-alias zsh-hook)"
 
 alias dk='docker'
+alias docker-stop-all='docker ps -aq | xargs docker stop'
 alias docker-rm-all='docker ps -aq | xargs docker rm'
 alias docker-rmi-all='docker images -aq | xargs docker rmi'
-alias dc='docker-compose'
+alias dc='docker compose'
 
 source <(kubectl completion zsh)
 
