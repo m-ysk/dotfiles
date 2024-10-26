@@ -35,6 +35,9 @@ require('packer').startup(function()
 	use 'hrsh7th/cmp-nvim-lsp'
 	use 'hrsh7th/cmp-buffer'
 
+	use 'hrsh7th/cmp-vsnip'
+	use 'hrsh7th/vim-vsnip'
+
 	use 'sbdchd/neoformat'
 	vim.g.neoformat_try_node_exe = 1
 	vim.cmd([[autocmd BufWritePre *.js,*.jsx,*.ts,*.tsx,*.htm,*.html,*.css Neoformat ]])
@@ -243,6 +246,11 @@ vim.opt.completeopt = 'menu,menuone,noselect'
 
 local cmp = require'cmp'
 cmp.setup({
+	snippet = {
+		expand = function(args)
+			vim.fn["vsnip#anonymous"](args.body)
+		end,
+	},
 	mapping = {
 		['<C-b>'] = cmp.mapping.scroll_docs(-4),
 		['<C-f>'] = cmp.mapping.scroll_docs(4),
