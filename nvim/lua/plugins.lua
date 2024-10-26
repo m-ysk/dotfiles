@@ -165,7 +165,7 @@ local nvim_lsp = require('lspconfig')
 local mason_lspconfig = require('mason-lspconfig')
 mason_lspconfig.setup({
 	ensure_installed = {
-		'tsserver',
+		'ts_ls',
 		'eslint',
 	},
 	automatic_installation = true,
@@ -173,7 +173,7 @@ mason_lspconfig.setup({
 mason_lspconfig.setup_handlers({function(server_name)
 	local opts = {}
 
-	if server_name == 'tsserver' then
+	if server_name == 'ts_ls' then
 		opts.init_options = require('nvim-lsp-ts-utils').init_options
 	end
 
