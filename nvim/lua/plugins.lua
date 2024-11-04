@@ -49,6 +49,8 @@ require('packer').startup(function()
 	--use 'godlygeek/tabular'
 	--use 'preservim/vim-markdown'
 
+	use 'fatih/vim-go'
+
 	use 'rust-lang/rust.vim'
 	vim.g.rustfmt_autosave = 1
 
