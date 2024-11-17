@@ -52,7 +52,7 @@ require('packer').startup(function()
 	use 'fatih/vim-go'
 
 	use 'rust-lang/rust.vim'
-	vim.g.rustfmt_autosave = 1
+	--vim.g.rustfmt_autosave = 1
 
 	use 'simrat39/rust-tools.nvim'
 
@@ -206,6 +206,8 @@ mason_lspconfig.setup_handlers({function(server_name)
 		end
 
 		if server_name == 'rust_analyzer' then
+			--vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+
 			buf_set_keymap('n', '<LocalLeader>e', "<cmd>lua require'rust-tools.expand_macro'.expand_macro()<CR>", opt)
 			buf_set_keymap('n', '<LocalLeader>o', "<cmd>lua require'rust-tools.open_cargo_toml'.open_cargo_toml()<CR>", opt)
 			buf_set_keymap('n', '<LocalLeader>u', "<cmd>lua require'rust-tools.move_item'.move_item(true)<CR>", opt)
