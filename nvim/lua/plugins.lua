@@ -222,6 +222,16 @@ mason_lspconfig.setup_handlers({function(server_name)
 			buf_set_keymap('n', '<LocalLeader>m', "<cmd>make<CR>", opt)
 			buf_set_keymap('n', '<LocalLeader>r', "<cmd>make run<CR>", opt)
 
+			vim.opt.shiftwidth = 2
+			vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format()")
+		end
+
+		if server_name == 'gopls' then
+			buf_set_keymap('n', '<LocalLeader>m', "<cmd>make<CR>", opt)
+			buf_set_keymap('n', '<LocalLeader>r', "<cmd>make run<CR>", opt)
+			buf_set_keymap('n', '<LocalLeader>t', "<cmd>make test<CR>", opt)
+
+			vim.opt.shiftwidth = 2
 			vim.cmd("autocmd BufWritePre <buffer> lua vim.lsp.buf.format()")
 		end
 
